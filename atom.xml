@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CoffeeChocolate&amp;Blog</title>
+  <icon>https://www.cxl2020mc.top/img/favicon.png</icon>
+  
+  <link href="https://www.cxl2020mc.top/atom.xml" rel="self"/>
+  
+  <link href="https://www.cxl2020mc.top/"/>
+  <updated>2025-02-14T02:58:55.000Z</updated>
+  <id>https://www.cxl2020mc.top/</id>
+  
+  <author>
+    <name>CoffeeChocolate</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于HEXO的个人博客的常见问题</title>
+    <link href="https://www.cxl2020mc.top/post/%E5%9F%BA%E4%BA%8EHEXO%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://www.cxl2020mc.top/post/%E5%9F%BA%E4%BA%8EHEXO%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</id>
+    <published>2025-02-14T02:58:55.000Z</published>
+    <updated>2025-02-14T02:58:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>问题描述</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/CoffeeChocolate1/CoffeeChocolate1.github.io.git/&#x27;: SSL peer certificate or SSH remote key was not OK</span><br><span class="line">或者</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br></pre></td></tr></table></figure><p>解决方案</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这个命令用于配置 Git，使其在执行基于 HTTP 的 Git 操作时，不验证 SSL 证书的有效性.</span><br><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure><p>问题描述</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error: Spawn failed     </span><br><span class="line">at ChildProcess.&lt;anonymous&gt; (E:\MyBlog\blog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br></pre></td></tr></table></figure><p>解决方案一</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.删除 `.deploy_git` 文件夹;</span><br><span class="line">2.输入 `git config --global core.autocrlf false`</span><br><span class="line">3.然后，依次执行：</span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p>解决方案二（好用）</p><figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">1.进入hexo根目录</span></span><br><span class="line"><span class="language-xml">2.直接把箭头指向的`.deploy_git`和`public`直接删除</span></span><br><span class="line"><span class="language-xml">3.然后执行</span></span><br><span class="line"><span class="language-xml">hexo clean</span></span><br><span class="line"><span class="language-xml">hexo g</span></span><br><span class="line"><span class="language-xml">hexo d</span></span><br></pre></td></tr></table></figure><p>注意！！：删除这两个文件夹不会造成影响！执行完hexo三连会重新部署</p><p>问题描述</p><p>Git提交完成后，github页面仍不显示或者显示错误</p><p>解决方案</p><p>1，确定自己提交的分支是否是github的默认分支，github会根据默认分支创建demo演示页面</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这是使用git将code上传到gihub的命令，上传到github的maser分支上</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/CoffeeChocolate1/CoffeeChocolate1.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><p>2，如果分支没问题，可以通过github的page页面查看该仓库的演示页面，确定是否是正确的效果，如果不是，可以删除重新创建。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;问题描述&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>通过Base64编码将视频或图片转换为txt文本文件</title>
+    <link href="https://www.cxl2020mc.top/post/%E9%80%9A%E8%BF%87Base64%E7%BC%96%E7%A0%81%E5%B0%86%E8%A7%86%E9%A2%91%E6%88%96%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2%E4%B8%BAtxt%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6/"/>
+    <id>https://www.cxl2020mc.top/post/%E9%80%9A%E8%BF%87Base64%E7%BC%96%E7%A0%81%E5%B0%86%E8%A7%86%E9%A2%91%E6%88%96%E5%9B%BE%E7%89%87%E8%BD%AC%E6%8D%A2%E4%B8%BAtxt%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6/</id>
+    <published>2025-02-12T02:22:42.000Z</published>
+    <updated>2025-02-12T02:22:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>通过Base64编码将视频或图片转换为txt文本文件</p><p>将图片转换为txt文本文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ base64 123.jpg &gt; 123.txt</span><br></pre></td></tr></table></figure><p>将txt文本文件恢复为图片</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ base64 -d 123.txt &gt; 567.jpg</span><br></pre></td></tr></table></figure><p>将视频转换为txt文本文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ base64 01.mp4 &gt; 001.txt</span><br></pre></td></tr></table></figure><p>将txt文本文件恢复为视频</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ base64 -d 001.txt &gt; 0001.mp4</span><br></pre></td></tr></table></figure><p>通过Base64编码批量将视频或图片转换为txt文本文件</p><p>批量将mp4转为txt文本文件的bat脚本-BatchEncode.bat</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置输入和输出文件夹路径</span><br><span class="line">set &quot;inputFolder=MP4Files&quot;  :: 存放MP4文件的文件夹</span><br><span class="line">set &quot;outputFolder=EncodedTextFiles&quot;  :: 编码后的文本文件存放的文件夹</span><br><span class="line"></span><br><span class="line">:: 检查输入文件夹是否存在</span><br><span class="line">if not exist &quot;%inputFolder%&quot; (</span><br><span class="line">    echo 输入文件夹 &quot;%inputFolder%&quot; 不存在，请检查路径！</span><br><span class="line">    pause</span><br><span class="line">    exit /b</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: 创建输出文件夹（如果不存在）</span><br><span class="line">if not exist &quot;%outputFolder%&quot; mkdir &quot;%outputFolder%&quot;</span><br><span class="line"></span><br><span class="line">:: 遍历输入文件夹中的所有MP4文件</span><br><span class="line">for %%f in (&quot;%inputFolder%\*.mp4&quot;) do (</span><br><span class="line">    set &quot;inputFile=%%f&quot;</span><br><span class="line">    set &quot;outputFile=%outputFolder%\%%~nf.txt&quot;  :: 输出为同名的.txt文件</span><br><span class="line"></span><br><span class="line">    :: 使用certutil进行Base64编码</span><br><span class="line">    certutil -encode &quot;!inputFile!&quot; &quot;!outputFile!&quot; &gt;nul</span><br><span class="line">    if !errorlevel! equ 0 (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 编码成功，保存为 &quot;!outputFile!&quot;</span><br><span class="line">    ) else (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 编码失败！</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">echo 所有文件处理完成！</span><br><span class="line">pause</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1,将上述代码保存为一个批处理文件，例如 BatchEncode.bat。</span><br><span class="line">2,在脚本所在目录下创建一个名为 MP4Files 的文件夹，将所有需要编码的MP4文件放入其中。</span><br><span class="line">3,运行 BatchEncode.bat 脚本，脚本会自动将每个MP4文件编码为Base64格式，并将编码后的数据保存到 EncodedTextFiles 文件夹中，文件扩展名为 .txt。</span><br><span class="line">4,如果需要处理其他类型的文件，可以将脚本中的 *.mp4 修改为对应的文件类型</span><br><span class="line">5,注意脚本文件是用utf-8代码编写的，如果直接运行此脚本文件，会出现乱码，所以请先将此脚本文件保存为ANSI格式(在记事本中打开批处理脚本文件，选择“文件 -&gt; 另存为”，在保存对话框中选择“ANSI”作为编码格式，然后保存文件).</span><br></pre></td></tr></table></figure><p>批量将txt转为mp4的bat脚本-BatchDecode.bat</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置输入和输出文件夹路径</span><br><span class="line">set &quot;inputFolder=Base64Files&quot;  :: 存放Base64编码文件的文件夹</span><br><span class="line">set &quot;outputFolder=DecodedFiles&quot;  :: 解码后文件存放的文件夹</span><br><span class="line"></span><br><span class="line">:: 检查输入文件夹是否存在</span><br><span class="line">if not exist &quot;%inputFolder%&quot; (</span><br><span class="line">    echo 输入文件夹 &quot;%inputFolder%&quot; 不存在，请检查路径！</span><br><span class="line">    pause</span><br><span class="line">    exit /b</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: 创建输出文件夹（如果不存在）</span><br><span class="line">if not exist &quot;%outputFolder%&quot; mkdir &quot;%outputFolder%&quot;</span><br><span class="line"></span><br><span class="line">:: 遍历输入文件夹中的所有文件</span><br><span class="line">for %%f in (&quot;%inputFolder%\*.txt&quot;) do (</span><br><span class="line">    set &quot;inputFile=%%f&quot;</span><br><span class="line">    set &quot;outputFile=%outputFolder%\%%~nf.mp4&quot;  :: 假设解码后为MP4文件，可根据需要修改扩展名</span><br><span class="line"></span><br><span class="line">    :: 使用certutil进行Base64解码</span><br><span class="line">    certutil -decode &quot;!inputFile!&quot; &quot;!outputFile!&quot; &gt;nul</span><br><span class="line">    if !errorlevel! equ 0 (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 解码成功，保存为 &quot;!outputFile!&quot;</span><br><span class="line">    ) else (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 解码失败！</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">echo 所有文件处理完成！</span><br><span class="line">pause</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1,将上述代码保存为一个批处理文件，例如 BatchDecode.bat。</span><br><span class="line">2,在脚本所在目录下创建一个名为 Base64Files 的文件夹，并将所有需要解码的Base64编码文件（假设为 .txt 文件）放入其中。</span><br><span class="line">3,运行 BatchDecode.bat 脚本，脚本会自动将解码后的文件保存到 DecodedFiles 文件夹中，文件扩展名默认为 .mp4，可根据实际情况修改脚本中的扩展名。</span><br><span class="line">4,如果需要处理其他类型的Base64编码文件，可以将脚本中的 *.txt 修改为对应的文件类型</span><br></pre></td></tr></table></figure><p>批量将图片转为txt文本文件的bat脚本-BatchEncode.bat</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">chcp 65001</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置输入和输出文件夹路径</span><br><span class="line">set &quot;inputFolder=ImageFiles&quot;  :: 存放图片文件的文件夹</span><br><span class="line">set &quot;outputFolder=EncodedTextFiles&quot;  :: 编码后的文本文件存放的文件夹</span><br><span class="line"></span><br><span class="line">:: 检查输入文件夹是否存在</span><br><span class="line">if not exist &quot;%inputFolder%&quot; (</span><br><span class="line">    echo 输入文件夹 &quot;%inputFolder%&quot; 不存在，请检查路径！</span><br><span class="line">    pause</span><br><span class="line">    exit /b</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: 创建输出文件夹（如果不存在）</span><br><span class="line">if not exist &quot;%outputFolder%&quot; mkdir &quot;%outputFolder%&quot;</span><br><span class="line"></span><br><span class="line">:: 遍历输入文件夹中的所有图片文件（支持多种格式）</span><br><span class="line">for %%f in (&quot;%inputFolder%\*.jpg&quot; &quot;%inputFolder%\*.png&quot; &quot;%inputFolder%\*.gif&quot; &quot;%inputFolder%\*.bmp&quot; &quot;%inputFolder%\*.webp&quot;) do (</span><br><span class="line">    set &quot;inputFile=%%f&quot;</span><br><span class="line">    set &quot;outputFile=%outputFolder%\%%~nf.txt&quot;  :: 输出为同名的.txt文件</span><br><span class="line"></span><br><span class="line">    :: 使用certutil进行Base64编码</span><br><span class="line">    certutil -encode &quot;!inputFile!&quot; &quot;!outputFile!&quot; &gt;nul</span><br><span class="line">    if !errorlevel! equ 0 (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 编码成功，保存为 &quot;!outputFile!&quot;</span><br><span class="line">    ) else (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 编码失败！</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">echo 所有文件处理完成！</span><br><span class="line">pause</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1，将上述代码保存为一个批处理文件，例如 BatchEncode.bat。</span><br><span class="line">2，在脚本所在目录下创建一个名为 ImageFiles 的文件夹，并将所有需要编码的图片文件（包括JPG、PNG、GIF、BMP、WebP等格式）放入其中。</span><br><span class="line">3，运行 BatchEncode.bat 脚本，脚本会自动将每个图片文件编码为Base64格式，并将编码后的数据保存到 EncodedTextFiles 文件夹中，文件扩展名为 .txt。</span><br><span class="line">4，如果需要处理其他图片格式，可以在 for 循环中添加对应的文件扩展名，例如 &quot;%inputFolder%\*.tiff&quot;。</span><br></pre></td></tr></table></figure><p>批量将txt转为图片的bat脚本-BatchDecode.bat</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">chcp 65001</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置输入和输出文件夹路径</span><br><span class="line">set &quot;inputFolder=EncodedTextFiles&quot;  :: 存放Base64编码文本文件的文件夹</span><br><span class="line">set &quot;outputFolder=DecodedImageFiles&quot;  :: 解码后的图片文件存放的文件夹</span><br><span class="line"></span><br><span class="line">:: 检查输入文件夹是否存在</span><br><span class="line">if not exist &quot;%inputFolder%&quot; (</span><br><span class="line">    echo 输入文件夹 &quot;%inputFolder%&quot; 不存在，请检查路径！</span><br><span class="line">    pause</span><br><span class="line">    exit /b</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: 创建输出文件夹（如果不存在）</span><br><span class="line">if not exist &quot;%outputFolder%&quot; mkdir &quot;%outputFolder%&quot;</span><br><span class="line"></span><br><span class="line">:: 遍历输入文件夹中的所有Base64编码的文本文件</span><br><span class="line">for %%f in (&quot;%inputFolder%\*.txt&quot;) do (</span><br><span class="line">    set &quot;inputFile=%%f&quot;</span><br><span class="line">    set &quot;outputFile=%outputFolder%\%%~nf.jpg&quot;  :: 假设解码后的文件为.jpg格式，可根据需要修改扩展名</span><br><span class="line"></span><br><span class="line">    :: 使用certutil进行Base64解码</span><br><span class="line">    certutil -decode &quot;!inputFile!&quot; &quot;!outputFile!&quot; &gt;nul</span><br><span class="line">    if !errorlevel! equ 0 (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 解码成功，保存为 &quot;!outputFile!&quot;</span><br><span class="line">    ) else (</span><br><span class="line">        echo 文件 &quot;!inputFile!&quot; 解码失败！</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">echo 所有文件处理完成！</span><br><span class="line">pause</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1，将上述代码保存为一个批处理文件，例如 BatchDecode.bat。</span><br><span class="line">2，在脚本所在目录下创建一个名为 EncodedTextFiles 的文件夹，并将所有需要解码的Base64编码的文本文件（.txt）放入其中。</span><br><span class="line">3，运行 BatchDecode.bat 脚本，脚本会自动将每个Base64编码的文本文件解码还原为原始图片文件，并将解码后的图片保存到 DecodedImageFiles 文件夹中，文件扩展名默认为 .jpg。</span><br><span class="line">4，如果需要将解码后的文件保存为其他图片格式（如 .png、.gif 等），可以将脚本中的 %%~nf.jpg 修改为 %%~nf.png 或其他扩展名。</span><br></pre></td></tr></table></figure><p>解决乱码问题</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">方法一：将批处理文件保存为ANSI编码</span><br><span class="line">在记事本中打开批处理脚本文件，选择“文件 -&gt; 另存为”，在保存对话框中选择“ANSI”作为编码格式，然后保存文件。</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方法二：在脚本中声明使用UTF-8编码</span><br><span class="line">在批处理脚本的开头添加以下命令：</span><br><span class="line">@echo off</span><br><span class="line">chcp 65001</span><br><span class="line">这会将命令行的编码设置为UTF-8，以匹配脚本文件的编码。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;通过Base64编码将视频或图片转换为txt文本文件&lt;/p&gt;
+&lt;p&gt;将图片转换为txt文本文件&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何快速在Ipad和电脑之间互传文件</title>
+    <link href="https://www.cxl2020mc.top/post/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%9C%A8Ipad%E5%92%8C%E7%94%B5%E8%84%91%E4%B9%8B%E9%97%B4%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/"/>
+    <id>https://www.cxl2020mc.top/post/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%9C%A8Ipad%E5%92%8C%E7%94%B5%E8%84%91%E4%B9%8B%E9%97%B4%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/</id>
+    <published>2025-01-10T03:23:04.000Z</published>
+    <updated>2025-01-10T03:23:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>如何快速在Ipad和电脑之间互传文件</p><p>1，在电脑上创建一个文件夹，修改文件夹属性，共享-高级共享-权限(为Everyone添加所有的权限)，并勾共享此文件夹。</p><p>2，在控制面板-找到此电脑的IPV4的地址</p><p>3，打开Ipad的文件-左上角的三个点-连接服务器-输入电脑的IPV4地址-注册用户(输入登录电脑使用的用户名和密码)</p><p>4，将共享文件拖入到文件夹中，电脑和Ipad就都能看到了。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;如何快速在Ipad和电脑之间互传文件&lt;/p&gt;
+&lt;p&gt;1，在电脑上创建一个文件夹，修改文件夹属性，共享-高级共享-权限(为Everyone添加所有的权限)，并勾共享此文件夹。&lt;/p&gt;
+&lt;p&gt;2，在控制面板-找到此电脑的IPV4的地址&lt;/p&gt;
+&lt;p&gt;3，打开Ipad的文件-左上</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Ipad" scheme="https://www.cxl2020mc.top/tags/Ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>华为手机备份照片或者文件夹到电脑</title>
+    <link href="https://www.cxl2020mc.top/post/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA%E5%A4%87%E4%BB%BD%E7%85%A7%E7%89%87%E6%88%96%E8%80%85%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E7%94%B5%E8%84%91/"/>
+    <id>https://www.cxl2020mc.top/post/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA%E5%A4%87%E4%BB%BD%E7%85%A7%E7%89%87%E6%88%96%E8%80%85%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E7%94%B5%E8%84%91/</id>
+    <published>2025-01-09T08:41:00.000Z</published>
+    <updated>2025-01-09T08:41:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>华为手机备份照片或者文件夹到电脑的方法</p><p>设置-更多连接-华为分享-共享到电脑(注意所有的按钮都要打开)，配置电脑端显示名(比如SW)，配置电脑端访问验证</p><p>电脑上打开此电脑，找到网络，在最上面输入\\SW,会跳出输入网络凭证窗口，连接即可。</p><p>注意：可能会出现输入\\SW后还是无法访问的，这时候需要进行如下操作</p><p>控制面板-程序-启用关闭windows功能-SMB1.0打开-重启电脑即可</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;华为手机备份照片或者文件夹到电脑的方法&lt;/p&gt;
+&lt;p&gt;设置-更多连接-华为分享-共享到电脑(注意所有的按钮都要打开)，配置电脑端显示名(比如SW)，配置电脑端访问验证&lt;/p&gt;
+&lt;p&gt;电脑上打开此电脑，找到网络，在最上面输入\\SW,会跳出输入网络凭证窗口，连接即可。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="手机技巧" scheme="https://www.cxl2020mc.top/tags/%E6%89%8B%E6%9C%BA%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用IDM和直链解析插件解除百度网盘的下载限速</title>
+    <link href="https://www.cxl2020mc.top/post/%E4%BD%BF%E7%94%A8IDM%E5%92%8C%E7%9B%B4%E9%93%BE%E8%A7%A3%E6%9E%90%E6%8F%92%E4%BB%B6%E8%A7%A3%E9%99%A4%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9A%84%E4%B8%8B%E8%BD%BD%E9%99%90%E9%80%9F/"/>
+    <id>https://www.cxl2020mc.top/post/%E4%BD%BF%E7%94%A8IDM%E5%92%8C%E7%9B%B4%E9%93%BE%E8%A7%A3%E6%9E%90%E6%8F%92%E4%BB%B6%E8%A7%A3%E9%99%A4%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9A%84%E4%B8%8B%E8%BD%BD%E9%99%90%E9%80%9F/</id>
+    <published>2024-08-27T13:59:20.000Z</published>
+    <updated>2024-08-27T13:59:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="使用idm和直链解析插件解除百度网盘的下载限速"><a class="markdownIt-Anchor" href="#使用idm和直链解析插件解除百度网盘的下载限速"></a> 使用IDM和直链解析插件解除百度网盘的下载限速</h3><p>首先，需要安装IDM软件，如何安装，请查看之前文章。</p><p>第二步，使用Edge浏览器下载插件【网盘直链下载助手】</p><p>第三步，登录网页端的百度网盘，会出现一个【下载助手】的按钮，点击，按照后续步骤处理即可</p><p>第四步，下载助手按钮点亮后，选中需要下载的文件，点击下载助手，选择API下载，获得直链，</p><p>​             到IDM中下载，或者IDM会自动弹出，直接下载。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;使用idm和直链解析插件解除百度网盘的下载限速&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#使用idm和直链解析插件解除百度网盘的下载限速&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>安卓手机网页视频下载方法</title>
+    <link href="https://www.cxl2020mc.top/post/%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA%E7%BD%91%E9%A1%B5%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/"/>
+    <id>https://www.cxl2020mc.top/post/%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA%E7%BD%91%E9%A1%B5%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/</id>
+    <published>2024-08-25T07:43:25.000Z</published>
+    <updated>2024-08-25T07:43:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="解决安卓手机下载网页视频的方法"><a class="markdownIt-Anchor" href="#解决安卓手机下载网页视频的方法"></a> 解决安卓手机下载网页视频的方法</h3><p>针对安卓手机，可以下载一个【视频下载器】即可下载网页端的视频，下载链接在迅雷云盘，需要可自取</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;解决安卓手机下载网页视频的方法&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#解决安卓手机下载网页视频的方法&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="安卓" scheme="https://www.cxl2020mc.top/tags/%E5%AE%89%E5%8D%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>华为手机如何存储照片到文件管理器中，但是照片不在图库中显示</title>
+    <link href="https://www.cxl2020mc.top/post/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E7%85%A7%E7%89%87%E5%88%B0%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%AD%EF%BC%8C%E4%BD%86%E6%98%AF%E7%85%A7%E7%89%87%E4%B8%8D%E5%9C%A8%E5%9B%BE%E5%BA%93%E4%B8%AD%E6%98%BE%E7%A4%BA/"/>
+    <id>https://www.cxl2020mc.top/post/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E7%85%A7%E7%89%87%E5%88%B0%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%AD%EF%BC%8C%E4%BD%86%E6%98%AF%E7%85%A7%E7%89%87%E4%B8%8D%E5%9C%A8%E5%9B%BE%E5%BA%93%E4%B8%AD%E6%98%BE%E7%A4%BA/</id>
+    <published>2024-08-19T09:18:50.000Z</published>
+    <updated>2024-08-19T09:18:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="华为手机如何存储照片到文件管理器中但是又不想照片在图库中显示出来"><a class="markdownIt-Anchor" href="#华为手机如何存储照片到文件管理器中但是又不想照片在图库中显示出来"></a> 华为手机如何存储照片到文件管理器中，但是又不想照片在图库中显示出来</h1><h3 id="华为手机隐藏照片的方法"><a class="markdownIt-Anchor" href="#华为手机隐藏照片的方法"></a> 华为手机隐藏照片的方法</h3><ul><li><p>使用图库自带的隐藏功能</p></li><li><p>在文件管理器中创建一个隐藏文件夹</p><p><strong>华为手机以’.'开头的文件夹通常是系统文件夹，这些文件夹包含了系统运行所需的重要文件和数据,一般这些文件夹都是隐藏起的。</strong></p></li></ul><h3 id="如何显示创建的隐藏文件夹"><a class="markdownIt-Anchor" href="#如何显示创建的隐藏文件夹"></a> 如何显示创建的隐藏文件夹</h3><p>‌<strong>要在[华为文件管理]中显示以.开头的隐藏文件，用户需要按照以下步骤操作</strong>‌：</p><ol><li>‌‌<strong>进入文件管理</strong>：首先，用户需要打开华为设备上的文件管理应用。</li><li>‌<strong>导航到个人设置</strong>‌：在文件管理的首页，点击“我的”选项卡进入个人设置页面。</li><li>‌<strong>访问设置选项</strong>‌：在“我的”页面中，找到并点击“设置”选项以进入设置页面。</li><li>‌<strong>显示隐藏文件</strong>‌：在设置页面中，找到“显示隐藏文件”选项，并点击打开其对应的小开关。这样设置后，用户就可以在文件管理中查看到以·开头的隐藏文件了。</li></ol>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;华为手机如何存储照片到文件管理器中但是又不想照片在图库中显示出来&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#华为手机如何存储照片到文件管理器中但是又不想照片在图库中显示出来&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="安卓" scheme="https://www.cxl2020mc.top/tags/%E5%AE%89%E5%8D%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Edge下载速度慢的问题</title>
+    <link href="https://www.cxl2020mc.top/post/%E8%A7%A3%E5%86%B3Edge%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>https://www.cxl2020mc.top/post/%E8%A7%A3%E5%86%B3Edge%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/</id>
+    <published>2024-08-19T08:43:49.000Z</published>
+    <updated>2024-08-19T08:43:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="解决edge浏览器下载速度慢的问题"><a class="markdownIt-Anchor" href="#解决edge浏览器下载速度慢的问题"></a> 解决Edge浏览器下载速度慢的问题</h1><p>使用IDM完美解决该问题，IDM还可以随意下载网页端的视频</p><h3 id="先安装idm软件到电脑上"><a class="markdownIt-Anchor" href="#先安装idm软件到电脑上"></a> 先安装IDM软件到电脑上</h3><p>需要软件请联系作者，在百度网盘获取。</p><h3 id="使用破解软件破解idm即可永久使用"><a class="markdownIt-Anchor" href="#使用破解软件破解idm即可永久使用"></a> 使用破解软件破解IDM即可永久使用</h3><h3 id="打开edge浏览器启用idm插件"><a class="markdownIt-Anchor" href="#打开edge浏览器启用idm插件"></a> 打开Edge浏览器，启用IDM插件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启用IDM插件后，下载软件时，插件会自动弹出来，下载即可</span><br><span class="line">网页播放视频时，插件也会自动弹出来，选择需要下载的视频即可</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;解决edge浏览器下载速度慢的问题&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#解决edge浏览器下载速度慢的问题&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="电脑优化" scheme="https://www.cxl2020mc.top/tags/%E7%94%B5%E8%84%91%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ipad安装巨魔商店教程</title>
+    <link href="https://www.cxl2020mc.top/post/ipad%E5%AE%89%E8%A3%85%E5%B7%A8%E9%AD%94%E5%95%86%E5%BA%97%E6%95%99%E7%A8%8B/"/>
+    <id>https://www.cxl2020mc.top/post/ipad%E5%AE%89%E8%A3%85%E5%B7%A8%E9%AD%94%E5%95%86%E5%BA%97%E6%95%99%E7%A8%8B/</id>
+    <published>2024-06-19T15:00:42.000Z</published>
+    <updated>2024-06-19T15:00:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文将详细介绍Ipad如何安装巨魔商店，请耐心看完。</p><h2 id="第一步检查ipad版本是否支持安装巨魔"><a class="markdownIt-Anchor" href="#第一步检查ipad版本是否支持安装巨魔"></a> 第一步：检查Ipad版本是否支持安装巨魔</h2><p>自查网站 <a href="https://ios.cfw.guide/installing-trollstore/">Installing TrollStore | iOS Guide (cfw.guide)</a></p><h2 id="第二步在ipad上安装trollinstaller"><a class="markdownIt-Anchor" href="#第二步在ipad上安装trollinstaller"></a> 第二步：在Ipad上安装TrollInstaller</h2><p>下载对应版本的TrollInstaller到电脑上（文件后缀为ipa）</p><h2 id="第三步在ipad上安装trollstore"><a class="markdownIt-Anchor" href="#第三步在ipad上安装trollstore"></a> 第三步：在Ipad上安装TrollStore</h2><p>使用爱思助手的工具箱-IPA签名功能对TrollInstaller的ipa文件进行签名</p><p>将签名后的ipa文件安装到Ipad上（直接将ipa文件拖拽到应用游戏里面即可）</p><p>卸载Ipad上的通知app，到app store中重新下载一个通知app</p><p>打开TrollInstaller软件，会显示设备未被信任</p><p>在Ipad上打开通用–VPN与设备管理–信任设备</p><p>在Ipad上找到隐私与安全–打开开发者模式</p><p>打开TrollInstaller软件，安装TrollStore，最后一步选择app时，选择通知app</p><p>打开魔法</p><p>打开TrollStore，点击install idid，等待变成灰色就说明安装成功了。</p><h2 id="第四步使用爱思助手签名失败的解决方法"><a class="markdownIt-Anchor" href="#第四步使用爱思助手签名失败的解决方法"></a> 第四步：使用爱思助手签名失败的解决方法</h2><p>见本地文件</p><h2 id="第五步注意"><a class="markdownIt-Anchor" href="#第五步注意"></a> 第五步：注意！！！</h2><p>使用巨魔安装的app必须在巨魔中卸载，不要直接在桌面卸载，会有残留不好处理。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本文将详细介绍Ipad如何安装巨魔商店，请耐心看完。&lt;/p&gt;
+&lt;h2 id=&quot;第一步检查ipad版本是否支持安装巨魔&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#第一步检查ipad版本是否支持安装巨魔&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Ipad" scheme="https://www.cxl2020mc.top/tags/Ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat配置与启动</title>
+    <link href="https://www.cxl2020mc.top/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/"/>
+    <id>https://www.cxl2020mc.top/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/</id>
+    <published>2024-04-16T01:49:29.000Z</published>
+    <updated>2024-04-16T01:49:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一-原始方式"><a class="markdownIt-Anchor" href="#一-原始方式"></a> 一、原始方式</h3><ol><li><p>正常创建Java项目即可</p><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/1.png" class></li><li><p>创建完成之后的目录结构</p>   <img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/2.png" class></li><li><p>右击鼠标项目名称，点击“Add Framework Support”</p></li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/3.png" class><ol start="4"><li>勾选上Web Application 以及对应的Create web.xml，点击OK</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/4.png" class><ol start="5"><li>新的目录结构多了web这个文件夹</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/5.png" class><ol start="6"><li>右击WEB-INF，新建两个Directory，名称分别为：classes和lib</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/6.png" class><ol start="7"><li>点击导航栏的File，打开&quot;Project Structure&quot;</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/7.png" class><ol start="8"><li>Modules-&gt;项目“TestJavaWeb”-&gt;Paths-&gt;Use module compile output path-&gt;文件夹图标点开，选择刚刚创建的classes文件夹-&gt;点击Apply</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/8.png" class><ol start="9"><li>classes就会变橙色</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/9.png" class><ol start="10"><li>再点击Dependencies -&gt; 点击+号 -&gt; 选择第一个“JARs or directories…&quot; -&gt; 选择刚刚创建的lib<a href="https://so.csdn.net/so/search?q=%E6%96%87%E4%BB%B6%E5%A4%B9&amp;spm=1001.2101.3001.7020">文件夹</a>，点击OK</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/10.png" class> <img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/11.png" class><ol start="11"><li>选择 “Jar Directory” -&gt; 点击OK</li></ol><pre><code>&#123;% asset_img 12.png  %&#125;</code></pre><ol start="12"><li>勾选上刚刚的文件夹 -&gt; 点击OK</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/13.png" class><ol start="14"><li>点击右上角的&quot;Add Configuration…&quot; 进行Tomcat部署</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/14.png" class><ol start="14"><li>点击+号 -&gt; 点击添加 Tomcat Server Local</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/15.png" class><ol start="15"><li>Configure… -&gt; 点击文件夹图标，选择自己下载的Tomcat文件即可</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/16.png" class><ol start="16"><li>Deployment -&gt; 点击+号 -&gt; 点击Artifact</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/17.png" class><ol start="17"><li>删除多余的后缀“_war_exploded&quot;</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/18.png" class><ol start="19"><li>点击绿色三角进行测试，浏览器中显示jsp文件中body标签中的内容就表示配置成功</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/19.png" class><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/20.png" class><h3 id="二-maven前提已经下载并配置好了maven"><a class="markdownIt-Anchor" href="#二-maven前提已经下载并配置好了maven"></a> 二、Maven（前提已经下载并配置好了Maven）</h3><ol><li>Maven -&gt; 勾选&quot;Create from archetype&quot; -&gt; 点击&quot;…webapp&quot; -&gt; Next</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/21.png" class><ol start="2"><li>配置好自己的Maven -&gt; 点击 Finish</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/22.png" class><ol start="3"><li>会开始下载大量文件，出现&quot;BUILD SUCCESS&quot;即可</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/23.png" class><ol start="4"><li>此时的目录结构，main中并没有resource和lib文件夹</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/24.png" class><ol start="5"><li>鼠标右点main，新建Directory，会出现红色框中的内容，依次将其新建出即可（如果目录中已经有这两个文件夹就跳过这一步）</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/25.png" class><ol start="6"><li>配置Tomcat的步骤跟原始方法一样，只不过在Deployment中点击加号后出现以上弹窗时，选择有&quot;exploded&quot;后缀的那一项，点击OK</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/26.png" class><ol start="7"><li>同样，还要去掉“_war_exploded&quot;后缀，点击OK</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/27.png" class><ol start="8"><li>在pom.xml文件中添加红框中的代码 （代码附在最下面</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/28.png" class><ol start="9"><li>点击蓝色加载图标，如果没有这个图标，就右击pom.xml文件，reload一下就行</li></ol><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/29.png" class><ol start="10"><li>使用<a href="https://so.csdn.net/so/search?q=spring%E6%A1%86%E6%9E%B6&amp;spm=1001.2101.3001.7020">spring框架</a>，记得导包，然后编辑spring xml文件还有web.xml文件（代码附下面)</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><ol start="11"><li><p>结构目录</p><img src="/post/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/Tomcat%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8/30.png" class>                             </li><li><p>点击右上角运行，出现jsp中的内容即可</p></li><li><p>文件</p><p>pom.xml文件</p></li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;spring.version&gt;5.2.15.RELEASE&lt;/spring.version&gt;</span><br></pre></td></tr></table></figure><p>这些放dependencies标签中：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><p>spring-mvc.xml</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:mvc</span>=<span class="string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">        https://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="string"><span class="tag">        http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure><p>web.xml</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">web-app</span> <span class="keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta"> <span class="string">&quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</span></span></span><br><span class="line"><span class="meta"> <span class="string">&quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;</span> &gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/spring-mvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一-原始方式&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#一-原始方式&quot;&gt;&lt;/a&gt; 一、原始方式&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;正常创建Java项目即可&lt;/p&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Tomcat" scheme="https://www.cxl2020mc.top/tags/Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>鼠标键盘录制工具</title>
+    <link href="https://www.cxl2020mc.top/post/%E9%BC%A0%E6%A0%87%E9%94%AE%E7%9B%98%E5%BD%95%E5%88%B6%E5%B7%A5%E5%85%B7/"/>
+    <id>https://www.cxl2020mc.top/post/%E9%BC%A0%E6%A0%87%E9%94%AE%E7%9B%98%E5%BD%95%E5%88%B6%E5%B7%A5%E5%85%B7/</id>
+    <published>2024-04-09T08:34:14.000Z</published>
+    <updated>2024-04-09T08:34:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="keymousego"><a class="markdownIt-Anchor" href="#keymousego"></a> KeymouseGo</h1><p>图片演示<br><img src="/post/%E9%BC%A0%E6%A0%87%E9%94%AE%E7%9B%98%E5%BD%95%E5%88%B6%E5%B7%A5%E5%85%B7/%E9%BC%A0%E6%A0%87%E9%94%AE%E7%9B%98%E5%BD%95%E5%88%B6%E5%B7%A5%E5%85%B71.jpg" alt></p><p>功能：记录用户的鼠标键盘操作，通过触发按钮自动执行之前记录的操作，可设定执行的次数，可以理解为 <code>精简绿色版</code> 的 <code>按键精灵</code>。</p><p>用途：在进行某些操作简单、单调重复的工作时，使用本软件就可以很省力了。自己只要做一遍，然后接下来就让电脑来做。</p><p>下载连接： <a href="https://github.com/taojy123/KeymouseGo?tab=readme-ov-file">类似按键精灵的鼠标键盘录制和自动化操作 模拟点击和键入)</a></p><h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1><p>该软件通过 <code>Python</code> 语言编写，已打包为可执行文件，未安装 <code>Python</code> 的用户可直接下载 <a href="https://github.com/taojy123/KeymouseGo/releases">release</a> 版本 ，直接点击 <code>KeymouseGo</code> 运行</p><h3 id="源码打包可执行文件"><a class="markdownIt-Anchor" href="#源码打包可执行文件"></a> 源码打包可执行文件</h3><ul><li>Windows</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 安装 Python3</span><br><span class="line">2. pip install -r requirements-windows.txt</span><br><span class="line">3. pip install pyinstaller</span><br><span class="line">4. pyinstaller -F -w --add-data &quot;./assets;assets&quot; KeymouseGo.py</span><br><span class="line"></span><br><span class="line">这段代码是用于使用PyInstaller将Python脚本打包成独立的可执行文件的命令。让我一步步解释：</span><br><span class="line"></span><br><span class="line">1. `pyinstaller`: 这是一个用于将Python脚本打包成独立可执行文件的工具。它会将Python解释器和脚本打包到一个独立的可执行文件中，这样用户就不需要安装Python解释器也可以运行脚本。</span><br><span class="line"></span><br><span class="line">2. `-F`: 这个选项告诉PyInstaller将所有的依赖打包成一个单独的可执行文件，而不是一个文件夹里的多个文件。这样可以使得最终的可执行文件更加整洁，便于分发和部署。</span><br><span class="line"></span><br><span class="line">3. `-w`: 这个选项告诉PyInstaller生成的可执行文件在运行时不显示命令行窗口。这在需要一个用户友好的界面时很有用，因为用户不会看到任何控制台输出，而只会看到图形用户界面。</span><br><span class="line"></span><br><span class="line">4. `--add-data &quot;./assets;assets&quot;`: 这个选项告诉PyInstaller将指定路径下的文件或文件夹添加到生成的可执行文件中。在这里，`&quot;./assets;assets&quot;`指的是当前目录下的`assets`文件夹及其内容，它们会被添加到生成的可执行文件中。</span><br><span class="line"></span><br><span class="line">5. `KeymouseGo.py`: 这是要打包的Python脚本文件的文件名。在这个例子中，`KeymouseGo.py`是要被打包的主程序文件。</span><br><span class="line"></span><br><span class="line">综合起来，这段代码的意思是：使用PyInstaller将名为`KeymouseGo.py`的Python脚本打包成一个独立的、无命令行窗口的可执行文件，并将当前目录下的`assets`文件夹及其内容添加到生成的可执行文件中。</span><br><span class="line"></span><br><span class="line">当你运行完上述的PyInstaller命令后，生成的可执行文件通常会在你的项目目录下的`dist`文件夹中找到。在这个文件夹中，你会找到一个与你的Python脚本文件同名的文件，但没有了`.py`的扩展名，这就是你所需的可执行文件。</span><br><span class="line"></span><br><span class="line">在这个例子中，如果你的Python脚本文件是`KeymouseGo.py`，那么生成的可执行文件应该是`KeymouseGo.exe`（在Windows系统中）。这个可执行文件就是你可以双击运行的程序，它包含了你的Python脚本以及所有的依赖项，用户不需要安装Python或其他依赖就可以直接运行。</span><br></pre></td></tr></table></figure><ul><li>Linux或Mac</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 安装 Python3</span><br><span class="line">2. pip3 install -r requirements-universal.txt</span><br><span class="line">3. pip3 install pyinstaller</span><br><span class="line">4. pyinstaller -F -w --add-data &quot;./assets:assets&quot; KeymouseGo.py</span><br></pre></td></tr></table></figure><h1 id="使用方法"><a class="markdownIt-Anchor" href="#使用方法"></a> 使用方法</h1><h2 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h2><h3 id="桌面模式"><a class="markdownIt-Anchor" href="#桌面模式"></a> 桌面模式</h3><p>1、点击 <code>录制</code> 按钮，开始录制。</p><p>2、在计算机上进行任意操作，如点击鼠标、键盘输入，这部分的动作会被记录下来。</p><p>3、点击 <code>结束</code> 按钮，结束录制。</p><p>4、点击 <code>启动</code> 按钮，计算机会重复执行一遍第2步中所录制的动作。</p><h3 id="命令行模式"><a class="markdownIt-Anchor" href="#命令行模式"></a> 命令行模式</h3><p>直接运行指定脚本:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./KeymouseGo scripts/0314_1452.txt</span><br></pre></td></tr></table></figure><p>运行指定脚本3次:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./KeymouseGo scripts/0314_1452.txt -rt 3</span><br><span class="line">&gt; ./KeymouseGo scripts/0314_1452.txt --runtimes 3</span><br></pre></td></tr></table></figure><p>以200%的速度运行指定脚本:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./KeymouseGo scripts/0314_1452.txt -sp 200</span><br><span class="line">&gt; ./KeymouseGo scripts/0314_1452.txt --speed 200</span><br></pre></td></tr></table></figure><p>加载自定义扩展<code>MyExtension</code>运行指定脚本:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ./KeymouseGo scripts/0314_1452.txt -m MyExtension</span><br><span class="line">&gt; ./KeymouseGo scripts/0314_1452.txt --module MyExtension</span><br></pre></td></tr></table></figure><h2 id="提示"><a class="markdownIt-Anchor" href="#提示"></a> 提示</h2><p>1、可设置脚本重复执行的次数，如果为 <code>0</code> 即为无限循环。</p><p>2、默认启动热键为 <code>F6</code>，功能等同于 <code>启动</code> 按钮；默认终止热键为 <code>F9</code>，按下后将会停止正在运行的脚本。</p><p>3、录制时只记录鼠标点击动作和键盘动作，不记录鼠标移动轨迹。</p><p>4、每次录制结束后都会在 <code>scripts</code> 目前下生成一个新的脚本文件。</p><p>5、运行前可以在列表中选择一个需要执行的脚本。</p><p>6、<code>scripts</code> 下的脚本文件内容可以修改，修改时可参考如下所述 <code>脚本格式说明</code>。</p><p>7、热键设置中的<code>Middle</code>指代鼠标中键，<code>XButton</code>指代鼠标侧键</p><p>8、由于程序速度受限，当输入的鼠标速度大于一定值时脚本将无法以预期的输入速度执行</p><p>部分系统环境中，可能出现无法录制完整的鼠标事件的情况，请以管理员身份/root身份运行此工具即可正常使用。</p><p>使用Mac的用户，需要确保程序在辅助功能白名单，如果使用打包的exec文件，则还需要确保终端也在辅助功能白名单。 如果app程序闪退，请尝试给予<code>~/.qt_material</code>目录下文件的写权限:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> -R 770 ~/.qt_material</span><br></pre></td></tr></table></figure><h2 id="脚本语法说明"><a class="markdownIt-Anchor" href="#脚本语法说明"></a> 脚本语法说明</h2><blockquote><p>演示屏幕分辨率为<code>1920 * 1080</code></p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line"> [3000, &quot;EM&quot;, &quot;mouse right down&quot;, [&quot;0.05208%&quot;, &quot;0.1852%&quot;]],    // 开始运行 `3000ms` 后，在屏幕相对坐标 `(0.05208, 0.1852)`即 `(100,200)` 处 `按下鼠标右键`；</span><br><span class="line"> [50,   &quot;EM&quot;, &quot;mouse right up&quot;,   [&quot;0.05208%&quot;, &quot;0.1852%&quot;]],    // 等待 `50ms` 后在相同位置 `抬起鼠标右键`；</span><br><span class="line"> [1000, &quot;EK&quot;, &quot;key down&quot;,         [70, &quot;F&quot;, 0]],                                   // 等待 `1000ms` 后 `按下f键`；</span><br><span class="line"> [50,   &quot;EK&quot;, &quot;key up&quot;,           [70, &quot;F&quot;, 0]],                                   // 等待 `50ms` 后 `抬起f键`；</span><br><span class="line"> [100,  &quot;EM&quot;, &quot;mouse left down&quot;,  [&quot;0.2604%&quot;, &quot;0.4630%&quot;]],      // 等待 `100ms` 后，在屏幕相对坐标 `(0.2604, 0.4630)`即 `(500, 500)` 处 `按下鼠标左键`；</span><br><span class="line"> [100,  &quot;EM&quot;, &quot;mouse move&quot;,       [&quot;0.2604%&quot;, &quot;0.5556%&quot;]],       // 等待 `100ms` 后，鼠标移动至相对坐标 `(0.2604, 0.5556)`即 `(500, 600)` 位置；</span><br><span class="line"> [100,  &quot;EM&quot;, &quot;mouse left up&quot;,  [&quot;0.3125%&quot;, &quot;0.5556%&quot;]],                   // 等待 `100ms` 后，在屏幕相对坐标 `(0.3125, 0.5556)`即 `(600, 600)` 处 `抬起鼠标左键`；</span><br><span class="line"> [100,  &quot;EX&quot;, &quot;input&quot;,            &quot;你好 world&quot;],                                   // 等待 `100ms` 后，在当前位置输入 `你好 world` 文字。</span><br><span class="line">]</span><br></pre></td></tr></table></figure><p>脚本为 <code>json</code> 格式，每一行代表一次动作：</p><ul><li>每行的第 1 个元素表示时间间隔，指的是本次动作与上一次动作之间相隔的时间，单位为毫秒。</li><li>每行的第 2 个元素表示鼠标动作或是键盘动作：<code>EM</code> 为鼠标，<code>EK</code> 为键盘，<code>EX</code> 为其他拓展动作。</li><li>每行的第 3 个元素表示动作的类型：<ul><li><code>mouse left down</code> 为鼠标左键按下，<code>mouse left up</code> 为鼠标左键抬起，</li><li><code>mouse right down</code> 为鼠标右键按下，<code>mouse right up</code> 为鼠标右键抬起，</li><li><code>mouse middle down</code> 为鼠标中键按下， <code>mouse middle up</code> 为鼠标中键抬起，</li><li><code>mouse wheel up</code> 为鼠标滚轮上滑， <code>mouse wheel down</code> 为鼠标滚轮下滑，</li><li><code>key down</code> 为键盘按键按下，<code>key up</code> 为键盘按键抬起，</li><li><code>mouse move</code> 为鼠标滑过，<code>input</code> 输入文字。</li></ul></li><li>每行的第 4 个元素表示具体的动作参数<ul><li>当为鼠标动作时，由两个子元素构成，分别为鼠标所在的屏幕位置的横纵坐标，</li><li>当为键盘动作时，由三个子元素构成，分别是（按键编号, 按键名, 拓展标记)，</li><li>当为输入文字动作时，为要输入的文字内容。</li></ul></li><li>每行 <code>//</code> 后的部分为注释内容。</li><li>修改时请严格遵守格式，否则可能导致脚本无法运行，建议修改前先备份一下。</li><li>横纵坐标为[-1, -1]时，表示在鼠标当前所在位置执行操作。</li></ul>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;keymousego&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#keymousego&quot;&gt;&lt;/a&gt; KeymouseGo&lt;/h1&gt;
+&lt;p&gt;图片演示&lt;br&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="生活" scheme="https://www.cxl2020mc.top/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>随笔</title>
+    <link href="https://www.cxl2020mc.top/post/%E9%9A%8F%E7%AC%94/"/>
+    <id>https://www.cxl2020mc.top/post/%E9%9A%8F%E7%AC%94/</id>
+    <published>2024-03-22T02:12:59.000Z</published>
+    <updated>2024-03-22T02:12:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="对不起，您暂时无权查看" data-whm="null">  <script id="hbeData" type="hbeData" data-hmacdigest="a19d1b7907075ea82ec78cb338f186ce2a5704d97a17cee00583605bbcf73152">8508e7d1531711a50f7a9e1b481a570448be672e5a790946de5a4bfeae03251f1175685a8a545985669bb34dc04c8fd240015ccbd8d64a10036ee350b95a60f74f84fe72a4c11a453a8620330fb50212699bd105b1e2cabe8ff884059af9c012d9fc88b4f91d476537e857dcbb7770d11a9ff35b317ef1b9a5f597d828cbe39f6666c93a0037bb987b021ed6a97e714b337b79cfd304b6b3aa736f4f89f528ea6f00df067a655e978305411f56dd822d233088330b1987f4decc40985620450219e652862baae0f172feb560102ced0c0e3ea03612b10107d2b75ed0347245e28863216b6c56c6828a548566591ae5f3cf5dc09e1bcfece6d91f089315ffbd3161a1a60ed5802581c05b274856ce093da7065779a62bd57688fcabc9c2d21b8afde3fb23e23a0d6d7e11412160d9ce09</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-wave">      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">记录生活，记录心情</span>      </label>      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>      </svg>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">这是一篇随笔</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Typore指令大全</title>
+    <link href="https://www.cxl2020mc.top/post/Typore%E6%8C%87%E4%BB%A4%E5%A4%A7%E5%85%A8/"/>
+    <id>https://www.cxl2020mc.top/post/Typore%E6%8C%87%E4%BB%A4%E5%A4%A7%E5%85%A8/</id>
+    <published>2024-03-17T15:09:05.000Z</published>
+    <updated>2024-03-17T15:09:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="typora入门全网最全教程"><a class="markdownIt-Anchor" href="#typora入门全网最全教程"></a> Typora入门：全网最全教程</h1><p>2024-3-17 by CoffeeChocolate</p><h2 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h2><p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。</p><ul><li>Typora删除了预览窗口，以及所有其他不必要的干扰。取而代之的是实时预览。</li><li>Markdown的语法因不同的解析器或编辑器而异，Typora使用的是<a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/">GitHub Flavored Markdown</a>。</li></ul><h2 id="markdown介绍"><a class="markdownIt-Anchor" href="#markdown介绍"></a> Markdown介绍</h2><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p><p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p><p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p><p>Markdown 编写的文档后缀为 <code>.md</code>, <code>.markdown</code>。</p><h2 id="常用快捷键"><a class="markdownIt-Anchor" href="#常用快捷键"></a> 常用快捷键</h2><ul><li>加粗： <code>Ctrl + B</code></li><li>标题： <code>Ctrl + H</code></li><li>插入链接： <code>Ctrl + K</code></li><li>插入代码： <code>Ctrl + Shift + C</code> – 无法执行</li><li>行内代码： <code>Ctrl + Shift + K</code></li><li>插入图片： <code>Ctrl + Shift + I</code></li><li>无序列表：<code>Ctrl + Shift + L</code> – 无法执行</li><li>撤销： <code>Ctrl + Z</code></li><li>一级标题： <code>Ctrl + 1</code> – 以此类推</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Typora快捷键整合</span><br><span class="line">​```</span><br><span class="line">Ctrl+1  一阶标题    Ctrl+B  字体加粗</span><br><span class="line">Ctrl+2  二阶标题    Ctrl+I  字体倾斜</span><br><span class="line">Ctrl+3  三阶标题    Ctrl+U  下划线</span><br><span class="line">Ctrl+4  四阶标题    Ctrl+Home   返回Typora顶部</span><br><span class="line">Ctrl+5  五阶标题    Ctrl+End    返回Typora底部</span><br><span class="line">Ctrl+6  六阶标题    Ctrl+T  创建表格</span><br><span class="line">Ctrl+L  选中某句话   Ctrl+K  创建超链接</span><br><span class="line">Ctrl+D  选中某个单词  Ctrl+F  搜索</span><br><span class="line">Ctrl+E  选中相同格式的文字   Ctrl+H  搜索并替换</span><br><span class="line">Alt+Shift+5 删除线 Ctrl+Shift+I    插入图片</span><br><span class="line">Ctrl+Shift+M    公式块 Ctrl+Shift+Q    引用</span><br><span class="line"></span><br><span class="line">注：一些实体符号需要在实体符号之前加”\”才能够显示</span><br><span class="line">​```</span><br></pre></td></tr></table></figure><h2 id="块元素"><a class="markdownIt-Anchor" href="#块元素"></a> 块元素</h2><h3 id="换行符"><a class="markdownIt-Anchor" href="#换行符"></a> 换行符</h3><p>在markdown中，段落由多个空格分隔。在Typora中，只需回车即可创建新段落。</p><h3 id="标题级别"><a class="markdownIt-Anchor" href="#标题级别"></a> 标题级别</h3><p># 一级标题 快捷键为 Ctrl + 1<br>## 二级标题 快捷键为 Ctrl + 2<br>…<br>###### 六级标题 快捷键为 Ctrl + 6</p><h3 id="引用文字"><a class="markdownIt-Anchor" href="#引用文字"></a> 引用文字</h3><p>&gt; + 空格 + 引用文字</p><h3 id="无序列表"><a class="markdownIt-Anchor" href="#无序列表"></a> 无序列表</h3><p>使用 * + - 都可以创建一个无序列表</p><ul><li>AAA</li><li>BBB</li><li>CCC</li></ul><h3 id="有序列表"><a class="markdownIt-Anchor" href="#有序列表"></a> 有序列表</h3><p>使用 1. 2. 3. 创建有序列表</p><ol><li>AAA</li><li>BBB</li><li>CCC</li></ol><h3 id="任务列表"><a class="markdownIt-Anchor" href="#任务列表"></a> 任务列表</h3><p>? -[ ] 不勾选<br>? -[x] 勾选</p><h3 id="代码块"><a class="markdownIt-Anchor" href="#代码块"></a> 代码块</h3><p>在Typora中插入程序代码的方式有两种：使用反引号 `（~ 键）、使用缩进（Tab）。</p><ul><li>插入行内代码，即插入一个单词或者一句代码的情况，使用 <code>code</code> 这样的形式插入。</li><li>插入多行代码输入3个反引号（`） + 回车，并在后面选择一个语言名称即可实现语法高亮。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def helloworld():</span><br><span class="line">    print(&quot;hello, world!&quot;)</span><br></pre></td></tr></table></figure><h3 id="数学表达式"><a class="markdownIt-Anchor" href="#数学表达式"></a> 数学表达式</h3><p>当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。根据需要加载 Mathjax 对数学公式进行渲染。</p><p>按下 <code>$$</code>，然后按下回车键，即可进行数学公式的编辑。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;_1\times\mathbf&#123;V&#125;_2 = \mathbf&#123;X&#125;_3</span><br><span class="line">$$</span><br></pre></td></tr></table></figure><h3 id="插入表格"><a class="markdownIt-Anchor" href="#插入表格"></a> 插入表格</h3><p>输入 <code>| 表头1 | 表头2 |</code>并回车。即可创建一个包含2列表。快捷键 <code>Ctrl + T</code>弹出对话框。</p><table><thead><tr><th>id</th><th>number</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><ul><li>不管是哪种方式，第一行为表头，第二行为分割表头和主体部分，第三行开始每一行为一个表格行</li><li>列与列之间用管道符号<code>|</code> 隔开</li><li>还可设置对齐方式(表头与内容之间)，如果不使用对齐标记，内容默认左对齐，表头居中对齐<ul><li>左对齐 ：|</li><li>右对齐 |：</li><li>中对齐 ：|：</li></ul></li><li>为了美观，可以使用空格对齐不同行的单元格，并在左右两侧都使用 | 来标记单元格边界</li><li>为了使 Markdown 更清晰，| 和 - 两侧需要至少有一个空格（最左侧和最右侧的 | 外就不需要了）。</li></ul><h3 id="脚注"><a class="markdownIt-Anchor" href="#脚注"></a> 脚注</h3><p>这个例子的脚注为<a href="http://www.mamicode.com/info-detail-2794030.html#fn1">1</a>。</p><p>注意：该例子脚注标识是1，脚注标识可以为字母数字下划线，但是暂不支持中文。脚注内容可为任意字符，包括中文。</p><h3 id="分割线"><a class="markdownIt-Anchor" href="#分割线"></a> 分割线</h3><p>输入 <code>***</code> 或者 <code>---</code> 再按回车即可绘制一条水平线，如下：</p><hr><h3 id="目录toc"><a class="markdownIt-Anchor" href="#目录toc"></a> 目录（TOC）</h3><p>输入 <code>[ toc ]</code> 然后回车，即可创建一个“目录”。TOC从文档中提取所有标题，其内容将自动更新。</p><blockquote><p>Typora支持TOC自动生成目录，博客园不支持？</p></blockquote><h2 id="跨度元素"><a class="markdownIt-Anchor" href="#跨度元素"></a> 跨度元素</h2><p>跨度元素即图片，网址，视频等，在Typora中输入后，会立即载入并呈现。</p><h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3><h4 id="内部链接"><a class="markdownIt-Anchor" href="#内部链接"></a> 内部链接</h4><p>这是一个带有标题属性的 <code>[链接](http://example.com/ &quot;标题&quot;)</code><br>这是一个没有标题属性的 <code>[链接](http://example.net/)</code></p><p><a href="http://example.com/">链接</a></p><p><a href="http://example.net/">链接</a></p><h4 id="参考链接"><a class="markdownIt-Anchor" href="#参考链接"></a> 参考链接</h4><p>这是一个[参考链接]id – 无法执行</p><h3 id="网址"><a class="markdownIt-Anchor" href="#网址"></a> 网址</h3><p>Typora允许用&lt;括号括起来&gt;, 把URL作为链接插入。</p><p>Typora还会自动链接标准网址。</p><p><a href="http://www.baidu.com">www.baidu.com</a></p><h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![显示的文字](C:\Users\Hider\Desktop\echart.png &quot;图片标题&quot;)</span><br><span class="line">![显示的文字](C:\Users\Hider\Desktop\echart.png)</span><br></pre></td></tr></table></figure><p>除了以上2种方式之外，还可以直接将图片拖拽进来，自动生成链接。</p><h3 id="斜体"><a class="markdownIt-Anchor" href="#斜体"></a> 斜体</h3><p>使用 <code>*单个星号*</code> 或者 <code>_单下划线_</code> 可以字体倾斜。快捷键 <code>Ctrl + I</code></p><p><em>斜体</em></p><h3 id="加粗"><a class="markdownIt-Anchor" href="#加粗"></a> 加粗</h3><p>使用 <code>**两个星号**</code> 或者 <code>__两个下划线__</code> 可以字体加粗。快捷键 <code>Ctrl + B</code></p><p><strong>加粗</strong></p><h3 id="加粗斜体"><a class="markdownIt-Anchor" href="#加粗斜体"></a> 加粗斜体</h3><p>使用<code>***加粗斜体***</code>可以加粗斜体。</p><p>*<strong>加粗斜体*</strong></p><h3 id="代码标记"><a class="markdownIt-Anchor" href="#代码标记"></a> 代码标记</h3><p>标记代码使用反引号，即在英文输入法下，ESC键下面和1键左边的符号。</p><blockquote><p>使用该 <code>printf()</code>功能</p></blockquote><h3 id="删除线"><a class="markdownIt-Anchor" href="#删除线"></a> 删除线</h3><p>使用<code>~~删除线~~</code> 快捷键 <code>Alt + Shift + 5</code></p><p><s>删除线</s></p><h3 id="下划线"><a class="markdownIt-Anchor" href="#下划线"></a> 下划线</h3><p>\下划线 – 无法执行</p><p>参考另一篇文章，可执行。</p><p>通过<code>下划线的内容</code> 或者 快捷键<code>Ctrl + U</code>可实现下划线</p><p>下划线的内容</p><h3 id="表情符号"><a class="markdownIt-Anchor" href="#表情符号"></a> 表情符号</h3><p>Github的Markdown语法支持添加emoji表情，输入不同的符号码（两个冒号包围的字符）可以显示出不同的表情。</p><p>:smile – 无法显示</p><p>??</p><h3 id="下标"><a class="markdownIt-Anchor" href="#下标"></a> 下标</h3><p>(需在设置中打开该功能)</p><p>H<sub>2</sub>O</p><h3 id="上标"><a class="markdownIt-Anchor" href="#上标"></a> 上标</h3><p>(需在设置中打开该功能)</p><p>X<sup>2</sup></p><h3 id="高亮"><a class="markdownIt-Anchor" href="#高亮"></a> 高亮</h3><p><code>==高亮==</code>(需在设置中打开该功能)</p><p><mark>我是最重要的</mark></p><h3 id="文本居中"><a class="markdownIt-Anchor" href="#文本居中"></a> 文本居中</h3><p>使用 <code>这是要居中的内容</code>可以使文本居中这是要居中的文本内容</p><h3 id="转义"><a class="markdownIt-Anchor" href="#转义"></a> 转义</h3><p>Markdown 使用了很多特殊符号来表示特定的意义，如果需要显示特定的符号则需要使用转义字符，Markdown 使用反斜杠转义特殊字符：</p><p><strong>文本加粗</strong><br>** 正常显示星号 **</p><p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\   反斜线</span><br><span class="line">`   反引号</span><br><span class="line">*   星号</span><br><span class="line">_   下划线</span><br><span class="line">&#123;&#125;  花括号</span><br><span class="line">[]  方括号</span><br><span class="line">()  小括号</span><br><span class="line">#   井字号</span><br><span class="line">+   加号</span><br><span class="line">-   减号</span><br><span class="line">.   英文句点</span><br><span class="line">!   感叹号</span><br></pre></td></tr></table></figure><h2 id="html"><a class="markdownIt-Anchor" href="#html"></a> HTML</h2><p>支持HTML</p><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。</p><p>目前支持的 HTML 元素有：<code>     </code>等 ，如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用 &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Del&lt;/kbd&gt; 重启电脑</span><br><span class="line">&lt;kbd&gt; &lt;/kbd&gt; -- 白色框框</span><br></pre></td></tr></table></figure><p>效果：<br>使用 Ctrl+Alt+Del 重启电脑</p><h3 id="嵌入内容"><a class="markdownIt-Anchor" href="#嵌入内容"></a> 嵌入内容</h3><h3 id="视频"><a class="markdownIt-Anchor" href="#视频"></a> 视频</h3><h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2><ol><li>建议打开大纲视图<code>Ctrl + Shift + 1</code></li><li>插入表格需要顶格写，否则无法显示</li><li>语法无须刻意记忆，右键可查询</li></ol><p>Tags:<a href="https://www.typora.net/tag/typora/">Typora</a></p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;typora入门全网最全教程&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#typora入门全网最全教程&quot;&gt;&lt;/a&gt; Typora入门：全网最全教程&lt;/h1&gt;
+&lt;p&gt;2024-3-17 by</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Typore" scheme="https://www.cxl2020mc.top/tags/Typore/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>随笔记录第一天</title>
+    <link href="https://www.cxl2020mc.top/post/%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
+    <id>https://www.cxl2020mc.top/post/%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/</id>
+    <published>2024-03-17T13:47:17.000Z</published>
+    <updated>2024-03-17T13:47:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<center>生活的意义</center><h1 id="这是我的第一篇随笔"><a class="markdownIt-Anchor" href="#这是我的第一篇随笔"></a> 这是我的第一篇随笔。</h1><p>我的生活很简单，</p><p>也很复杂。</p><p>所以我好像并不知道要记录些什么。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print（&quot;你好，世界&quot;）</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;center&gt;生活的意义&lt;/center&gt;
+&lt;h1 id=&quot;这是我的第一篇随笔&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#这是我的第一篇随笔&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.cxl2020mc.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生活其实慢一点也没关系</title>
+    <link href="https://www.cxl2020mc.top/post/%E7%94%9F%E6%B4%BB%E5%85%B6%E5%AE%9E%E6%85%A2%E4%B8%80%E7%82%B9%E4%B9%9F%E6%B2%A1%E5%85%B3%E7%B3%BB/"/>
+    <id>https://www.cxl2020mc.top/post/%E7%94%9F%E6%B4%BB%E5%85%B6%E5%AE%9E%E6%85%A2%E4%B8%80%E7%82%B9%E4%B9%9F%E6%B2%A1%E5%85%B3%E7%B3%BB/</id>
+    <published>2024-03-15T15:17:56.000Z</published>
+    <updated>2024-03-15T15:17:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Hey, password is required here." data-whm="Hey, password is required here.">  <script id="hbeData" type="hbeData" data-hmacdigest="69e5738120dd776dc1c206cc1fb086afc40cc12f5bb1de5cd4e4dddaf62852a2">8508e7d1531711a50f7a9e1b481a5704776b58e063f28e12916e5e3bcfbbf7036600ea0adb25d1c7b92f8554111b77a08dd8b34f51bf7a457b81d6144ff461f4310e27b757bc2ebeade3517c97cd118bf6dab6245b36bde301e1cc1304db4e7d57b54cd0c2d25f053f000f99e4a6d965c29bf76b272138c2d4cf6e9f3d6f8d3054b75322ac3cdeeeac3379b2b80706cbcfbdc4e0bf8b08ebe942a4698e1a3c517c6147a51f534270911ce7282e3ad7f06d4d30789b2a3ca326f96c536b2dac2d4ef183017b830f247d701eaeda4e74a08b461441216ff109553f84948e2ecaf4231dc8a035485f2809319a666f84066508d889e5c2a1ccc57116210cdc123d1303bb4b1981b63efd18cbeeeb30610cbadebe0c0e8d5cc88cd10e33d78c15fb0bfe57f8bccacc266cd9d587e56f90e43f6a703f76b35c0e653d2a82ddfcd677cab780480302641c27071e63088041e889d63768d0a97ebba91011e626f4cb8a3656380e33693b305fff333ceaf4462c0853792725774371ddaeb9752c2903119ad133d900ec3ca3f1354b490dce9ada51ac032f7ea4b1bd0520a8cf093c1de1f0680cf0425eace6a477847acb84d53bc2a43e494abe6f86e596e720aa1329e6bc275f844d7eec8298c98f0c23c037d57e384adeea6caeb13d5196b16920bc1a7c9cf6dbcaf5b92cc0563b5e41756ea94a82b8216db5fdf3b82f6de7403e3d480aa389dc0ca2d54c6ac7d0f547c5a0f1d19f45945b4416bf4755dd5ac0c32478ccd2372f7725fbd656e20ecc4051909751091ec0e474bb2ae05da5bb7246c732ce4d845adef60d23479de6311c7f0c6029f8d5872cfeea5c0de9e2aa58da80b27d</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-wave">      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">Hey, password is required here.</span>      </label>      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>      </svg>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.cxl2020mc.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生活明朗万物可爱</title>
+    <link href="https://www.cxl2020mc.top/post/%E7%94%9F%E6%B4%BB%E6%98%8E%E6%9C%97%E4%B8%87%E7%89%A9%E5%8F%AF%E7%88%B1/"/>
+    <id>https://www.cxl2020mc.top/post/%E7%94%9F%E6%B4%BB%E6%98%8E%E6%9C%97%E4%B8%87%E7%89%A9%E5%8F%AF%E7%88%B1/</id>
+    <published>2024-03-10T10:32:34.000Z</published>
+    <updated>2024-03-10T10:32:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>很多时候，生活总是会带给我们不一样的惊喜。很多你觉得的不可能的事，在某一刻还是被你完成了。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;很多时候，生活总是会带给我们不一样的惊喜。很多你觉得的不可能的事，在某一刻还是被你完成了。&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.cxl2020mc.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>下载网页视频和图片</title>
+    <link href="https://www.cxl2020mc.top/post/%E4%B8%8B%E8%BD%BD%E7%BD%91%E9%A1%B5%E8%A7%86%E9%A2%91%E5%92%8C%E5%9B%BE%E7%89%87/"/>
+    <id>https://www.cxl2020mc.top/post/%E4%B8%8B%E8%BD%BD%E7%BD%91%E9%A1%B5%E8%A7%86%E9%A2%91%E5%92%8C%E5%9B%BE%E7%89%87/</id>
+    <published>2024-03-06T12:44:06.000Z</published>
+    <updated>2024-03-06T12:44:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一个可以下载网页视频资源的插件</p><p>插件(Edge插件)</p><p>猫抓</p><p><img src="/post/%E4%B8%8B%E8%BD%BD%E7%BD%91%E9%A1%B5%E8%A7%86%E9%A2%91%E5%92%8C%E5%9B%BE%E7%89%87/1.jpg" alt></p><p>万能视频下载工具</p><p><img src="/post/%E4%B8%8B%E8%BD%BD%E7%BD%91%E9%A1%B5%E8%A7%86%E9%A2%91%E5%92%8C%E5%9B%BE%E7%89%87/2.jpg" alt></p><p>备注：推荐一个手机端可以使用插件的浏览器：狐猴浏览器</p><p>如果是m3u8视频文件，会下载很多的ts后缀文件，需要合成一个文件才可以正常播放</p><p>可以使用m3u8在线转化工具直接存储为mp4文件</p><p><a href="https://blog.luckly-mjw.cn/tool-show/m3u8-downloader/index.html">https://blog.luckly-mjw.cn/tool-show/m3u8-downloader/index.html</a></p><p>推荐一个网页图片下载的插件</p><p>Chrome的插件</p><p><img src="/post/%E4%B8%8B%E8%BD%BD%E7%BD%91%E9%A1%B5%E8%A7%86%E9%A2%91%E5%92%8C%E5%9B%BE%E7%89%87/3.jpg" alt></p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一个可以下载网页视频资源的插件&lt;/p&gt;
+&lt;p&gt;插件(Edge插件)&lt;/p&gt;
+&lt;p&gt;猫抓&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>HTML</title>
+    <link href="https://www.cxl2020mc.top/post/HTML/"/>
+    <id>https://www.cxl2020mc.top/post/HTML/</id>
+    <published>2024-03-06T12:41:20.000Z</published>
+    <updated>2024-03-06T12:41:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>欢迎光临</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;欢迎光临&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>HEXO相关</title>
+    <link href="https://www.cxl2020mc.top/post/HEXO%E7%9B%B8%E5%85%B3/"/>
+    <id>https://www.cxl2020mc.top/post/HEXO%E7%9B%B8%E5%85%B3/</id>
+    <published>2024-03-05T07:31:21.000Z</published>
+    <updated>2024-03-05T07:31:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>图片先行</p><p><img src="/post/HEXO%E7%9B%B8%E5%85%B3/yuanshen.png" alt></p><p><img src="/post/HEXO%E7%9B%B8%E5%85%B3/1111.png" alt></p><img src="/post/HEXO%E7%9B%B8%E5%85%B3/HEXO%E7%9B%B8%E5%85%B3/1111.png" class>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;图片先行&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/post/HEXO%E7%9B%B8%E5%85%B3/yuanshen.png&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/post/HEXO%E7%9B%B8%E5%85%B3/1111.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="HEXO" scheme="https://www.cxl2020mc.top/tags/HEXO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>个人介绍</title>
+    <link href="https://www.cxl2020mc.top/post/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/"/>
+    <id>https://www.cxl2020mc.top/post/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/</id>
+    <published>2024-03-05T06:15:50.000Z</published>
+    <updated>2024-03-05T06:15:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>你的优点和缺点是什么</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我的优点是：</span><br><span class="line">我对于研究有着浓厚的兴趣和执着的追求，在学术研究研究方面，我善于思考问题和分析问题，能够独立的完成研究任务，此外，我具有良好的沟通能力和团队合作能力，能够与同学和老师有效的交流合作</span><br><span class="line"></span><br><span class="line">我的缺点是：</span><br><span class="line">我有的时候可能会过于专注于细节，导致在时间管理上不够高效，此外，我在应对突发情况的应变能力还有待提高，我正在通过合理的时间安排和积极的参加各种活动来改善这些不足之处。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;你的优点和缺点是什么&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
