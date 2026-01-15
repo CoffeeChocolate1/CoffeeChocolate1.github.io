@@ -15,8 +15,37 @@
     <atom:link href="https://www.cxl2020mc.top/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>生活明朗，万物可爱。</description>
-    <pubDate>Fri, 14 Feb 2025 02:58:55 GMT</pubDate>
+    <pubDate>Thu, 15 Jan 2026 06:47:09 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>IOS系统关闭软件开屏广告的办法</title>
+      <link>https://www.cxl2020mc.top/post/IOS%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A%E7%9A%84%E5%8A%9E%E6%B3%95/</link>
+      <guid>https://www.cxl2020mc.top/post/IOS%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A%E7%9A%84%E5%8A%9E%E6%B3%95/</guid>
+      <pubDate>Thu, 15 Jan 2026 06:47:09 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;IOS系统关闭软件开屏广告的办法&lt;/p&gt;
+&lt;p&gt;方法一&lt;/p&gt;
+&lt;p&gt;使用快捷指令直接通过URL Scheme打开APP. 绕过广告页面&lt;/p&gt;
+&lt;p&gt;快捷指令如下：&lt;/p&gt;
+&lt;p&gt;&lt;img</description>
+          
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>IOS系统关闭软件开屏广告的办法</p><p>方法一</p><p>使用快捷指令直接通过URL Scheme打开APP. 绕过广告页面</p><p>快捷指令如下：</p><p><img src="/post/IOS%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A%E7%9A%84%E5%8A%9E%E6%B3%95/IOS%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A%E7%9A%84%E5%8A%9E%E6%B3%95-1.jpg" alt></p><p>方法二：</p><p>对于一些不需要网络的APP,可以直接关闭其网络权限，这样也可以有效避免开屏广告。</p><p>方法三：</p><p>在打开APP前关闭局域网和数据，也会跳过APP的开屏广告</p><p>这个方法网上也有介绍，但都是先打开APP,然后关闭网络，最后在开启网络，这样还是有可能会显示开屏广告</p><p>但是，如果先关闭网络，在打开APP,最后在开启网络，这样就不会显示开屏广告啦！</p><p>快捷指令如下：</p><p><img src="/post/IOS%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A%E7%9A%84%E5%8A%9E%E6%B3%95/IOS%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A%E7%9A%84%E5%8A%9E%E6%B3%95-2.jpg" alt></p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>https://www.cxl2020mc.top/post/IOS%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%97%AD%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A%E7%9A%84%E5%8A%9E%E6%B3%95/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>基于HEXO的个人博客的常见问题</title>
@@ -528,32 +557,6 @@
       
       
       <comments>https://www.cxl2020mc.top/post/HEXO%E7%9B%B8%E5%85%B3/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>个人介绍</title>
-      <link>https://www.cxl2020mc.top/post/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/</link>
-      <guid>https://www.cxl2020mc.top/post/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/</guid>
-      <pubDate>Tue, 05 Mar 2024 06:15:50 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;你的优点和缺点是什么&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</description>
-          
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>你的优点和缺点是什么</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我的优点是：</span><br><span class="line">我对于研究有着浓厚的兴趣和执着的追求，在学术研究研究方面，我善于思考问题和分析问题，能够独立的完成研究任务，此外，我具有良好的沟通能力和团队合作能力，能够与同学和老师有效的交流合作</span><br><span class="line"></span><br><span class="line">我的缺点是：</span><br><span class="line">我有的时候可能会过于专注于细节，导致在时间管理上不够高效，此外，我在应对突发情况的应变能力还有待提高，我正在通过合理的时间安排和积极的参加各种活动来改善这些不足之处。</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      
-      
-      <comments>https://www.cxl2020mc.top/post/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/#disqus_thread</comments>
       
     </item>
     
